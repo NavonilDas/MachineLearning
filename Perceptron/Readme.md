@@ -10,3 +10,4 @@ A Perceptron is used for binary Classification. It is a Single artificial neuron
 The source code is for a Perceptron learning a "OR logical" operations.
 
 # Result
+![Result](Result.gif)
