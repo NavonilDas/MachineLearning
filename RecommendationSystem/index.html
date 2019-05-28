@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="script.js"></script>
+    <script src="PickColor.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/brain/0.6.3/brain.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brain/0.6.3/brain.js"></script>
     <title>Color Recommendation</title>
 </head>
 
@@ -23,6 +24,7 @@
                 <div></div>
                 <div></div>
             </div>
+
             <div>
                 <div id="RatingBar">
                     <i class="fa fa-star" val="1"></i>
@@ -33,11 +35,36 @@
                 </div>
                 <button onclick="download()">Download Data</button>
             </div>
+
+            <div id="pencil" onclick="SelectColor()">
+                <i class="fa fa-pencil"></i>
+            </div>
+
         </div>
     </div>
 
-    <div id="contents">
+    <div id="contents"></div>
 
+    <div id="allBlack"></div>
+
+    <div id="fullScreen">
+        <div class="Box">
+            <div>Press Pick and tap on the color wheel to select color.</div>
+            <div class="selector">
+                <div>
+                    <button onclick="SelectPick(this)" index=1>Pick</button>
+                    <button onclick="SelectPick(this)" index=2>Pick</button>
+                    <button onclick="SelectPick(this)" index=3>Pick</button>
+                    <button onclick="SelectPick(this)" index=4>Pick</button>
+                </div>
+            </div>
+
+            <div>
+                <button onclick="Select()">Select</button>
+                <button onclick="CancelPick()">Cancel</button>
+            </div>
+            
+        </div>
     </div>
 
 </body>

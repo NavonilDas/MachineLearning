@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     outline: none;
+    user-select: none;
 }
 
 #pallete-main {
@@ -11,7 +12,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-#pallete-main > div {
+#pallete-main>div {
     display: inline-block;
 }
 
@@ -34,10 +35,10 @@
     margin: 10px;
     cursor: pointer;
     max-width: 300px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.card > div {
+.card>div {
     display: inline-block;
 }
 
@@ -45,14 +46,80 @@
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas: ". main .";
-    margin-top:40px;
+    margin-top: 40px;
 }
 
-#header > div {
+#header>div {
     grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr 1fr 50px;
+}
+
+#pencil {
+    font-size: 2em;
+    cursor: pointer;
+    color: brown;
+}
+
+.goldc {
+    color: #FFD700;
+}
+
+#fullScreen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    display: none;
+}
+
+#allBlack {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: none;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.Box {
+    z-index: 101;
+    background: #fff;
+    margin: auto auto;
+    min-width: 300px;
+    min-height: 200px;
+    box-shadow: 2px 2px 15px #fff;
+    padding: 1em;
+    font-size: 1.2em;
+}
+
+.Box .selector {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.goldc{
-    color: #FFD700;
+
+.Box .selector>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.Box>div:nth-child(3) {
+    float: right;
+}
+
+.Box button {
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    box-shadow: 2px 2px 6px gray;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+.Box button:hover {
+    box-shadow: 2px 2px 10px #000;
 }

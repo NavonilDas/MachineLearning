@@ -22,6 +22,8 @@ function Load() {
     contents = document.getElementById('contents');
     stars = document.getElementById('RatingBar').getElementsByTagName('i');
 
+    LoadColorPicker();
+
     for (let i = 0; i < stars.length; ++i) {
         stars[i].addEventListener('mouseover', Hover);
         stars[i].addEventListener('mouseout', HoverOut);
@@ -104,26 +106,47 @@ function Train(val) {
     }
 }
 
-function Recommend() {
+function Recommend(picked) {
     var all = [];
-    for (var i = 0; i < 1000; ++i) {
-        var inp = [], col = [];
-        for (var j = 0; j < 15; ++j) {
-            var t = RandomColor();
-            inp.push(t / 255.0);
-            col.push(t);
+    if (picked instanceof Array) {
+        var noma = picked.map((val)=>val/255);
+        
+        for (var i = 0; i < 2000; ++i) {
+            var inp = noma.slice(), col = picked.slice();
+            
+            for (var j = 0; j < 15 - picked.length; ++j) {
+                var t = RandomColor();
+                inp.push(t / 255.0);
+                col.push(t);
+            }
+            var o = model.run(inp);
+            all.push({ inp: col, o: o });
         }
-        var o = model.run(inp);
-        all.push({ inp: col, o: o });
-    }
+    } else
+        for (var i = 0; i < 2000; ++i) {
+            var inp = [], col = [];
+
+            for (var j = 0; j < 15; ++j) {
+                var t = RandomColor();
+                inp.push(t / 255.0);
+                col.push(t);
+            }
+
+            var o = model.run(inp);
+            all.push({ inp: col, o: o });
+        }
+
     all.sort(function (a, b) {
         return a.o - b.o;
     });
     var x = all[0], tmp = "", xxx = "";
+
     for (var i = 0; i < 15; i += 3)
         tmp += generateColorDiv(x.inp[i], x.inp[i + 1], x.inp[i + 2]);
+
     document.getElementById('pallete-main').innerHTML = tmp;
     contents.innerHTML = "";
+
     for (var i = 1; i < 29; i++) {
         tmp = "";
         for (var j = 0; j < 15; j += 3)
